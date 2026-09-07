@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Business</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #eee;
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      height: 75px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: #635bff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4b5563;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #635bff;
+    }
+
+    .nav-btn {
+      padding: 11px 20px;
+      background: #635bff;
+      color: white !important;
+      border-radius: 8px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 150px 20px 80px;
+      background:
+        radial-gradient(circle at 85% 20%, #e8e6ff 0, transparent 30%),
+        linear-gradient(135deg, #f8f9ff, #ffffff);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      margin: auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      background: #ecebff;
+      color: #635bff;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: #635bff;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #667085;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      padding: 14px 24px;
+      border-radius: 9px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .primary-btn {
+      background: #635bff;
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background: #5048e5;
+      transform: translateY(-2px);
+    }
+
+    .secondary-btn {
+      border: 1px solid #ddd;
+      background: white;
+    }
+
+    .secondary-btn:hover {
+      border-color: #635bff;
+      color: #635bff;
+    }
+
+    /* HERO CARD */
+    .hero-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 25px 70px rgba(50, 45, 120, 0.15);
+      border: 1px solid #eee;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .card-top h3 {
+      font-size: 17px;
+    }
+
+    .status {
+      color: #16a34a;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .chart {
+      height: 180px;
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 6px 6px 0 0;
+      background: linear-gradient(#8a84ff, #635bff);
+    }
+
+    .bar:nth-child(1) { height: 35%; }
+    .bar:nth-child(2) { height: 50%; }
+    .bar:nth-child(3) { height: 42%; }
+    .bar:nth-child(4) { height: 65%; }
+    .bar:nth-child(5) { height: 58%; }
+    .bar:nth-child(6) { height: 78%; }
+    .bar:nth-child(7) { height: 95%; }
+
+    .card-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .card-stats strong {
+      display: block;
+      font-size: 22px;
+    }
+
+    .card-stats small {
+      color: #888;
+    }
+
+    /* GENERAL */
+    section {
+      padding: 100px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #667085;
+    }
+
+    /* SERVICES */
+    .services {
+      background: #f8f9fc;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 32px;
+      border-radius: 15px;
+      border: 1px solid #eee;
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: #ecebff;
+      font-size: 24px;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #667085;
+      font-size: 15px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: #635bff;
+      color: white;
+      padding: 45px;
+      border-radius: 20px;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-box h3 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .about-text h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: #667085;
+      margin-bottom: 20px;
+    }
+
+    .check {
+      margin: 12px 0;
+      font-weight: 600;
+    }
+
+    .check::before {
+      content: "✓";
+      color: #635bff;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    /* STATS */
+    .stats {
+      background: #111827;
+      color: white;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 30px;
+    }
+
+    .stat h2 {
+      color: #8a84ff;
+      font-size: 42px;
+    }
+
+    .stat p {
+      color: #cbd5e1;
+    }
+
+    /* TESTIMONIALS */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .testimonial {
+      padding: 30px;
+      border: 1px solid #eee;
+      border-radius: 15px;
+      background: white;
+    }
+
+    .stars {
+      color: #f59e0b;
+      margin-bottom: 15px;
+    }
+
+    .testimonial p {
+      color: #667085;
+      margin-bottom: 20px;
+    }
+
+    .person {
+      font-weight: bold;
+    }
+
+    .person span {
+      display: block;
+      color: #999;
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 80px 20px;
+      background: #635bff;
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      margin-bottom: 28px;
+      color: #e5e4ff;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #635bff;
+      padding: 14px 26px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0b1020;
+      color: white;
+      padding: 45px 20px;
+    }
+
+    .footer-content {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-content p {
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+      color: #cbd5e1;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .service-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .section-title h2,
+      .about-text h2,
+      .cta h2 {
+        font-size: 32px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="#" class="logo">NOVA</a>
+
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact" class="nav-btn">Let's Talk</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+
+        <div>
+          <span class="badge">GROW YOUR BUSINESS</span>
+
+          <h1>
+            We turn ideas into
+            <span>real growth.</span>
+          </h1>
+
+          <p>
+            NOVA helps ambitious businesses build stronger brands,
+            reach more customers, and create sustainable growth.
+          </p>
+
+          <div class="buttons">
+            <a href="#contact" class="primary-btn">Start a Project →</a>
+            <a href="#services" class="secondary-btn">Explore Services</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="card-top">
+            <h3>Business Performance</h3>
+            <span class="status">● +24.8%</span>
+          </div>
+
+          <div class="chart">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+
+          <div class="card-stats">
+            <div>
+              <strong>$2.4M</strong>
+              <small>Revenue</small>
+            </div>
+
+            <div>
+              <strong>86%</strong>
+              <small>Growth</small>
+            </div>
+
+            <div>
+              <strong>420+</strong>
+              <small>Clients</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>What we do</h2>
+          <p>
+            Everything you need to take your business to the next level.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <div class="service-card">
+            <div class="icon">🚀</div>
+            <h3>Business Strategy</h3>
+            <p>
+              Clear strategies designed to help you compete,
+              grow, and achieve your long-term goals.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="icon">🎨</div>
+            <h3>Brand Design</h3>
+            <p>
+              Build a memorable brand identity that makes
+              your business stand out from the competition.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="icon">📈</div>
+            <h3>Digital Marketing</h3>
+            <p>
+              Data-driven marketing campaigns that bring
+              qualified customers to your business.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+
+        <div class="about-box">
+          <h3>Built for ambitious businesses.</h3>
+          <p>
+            We combine creativity, strategy, and technology
+            to create meaningful business results.
+          </p>
+        </div>
+
+        <div class="about-text">
+          <h2>More than an agency.</h2>
+
+          <p>
+            We work alongside our clients as a strategic partner.
+            Our goal isn't simply to deliver projects — it's to
+            create measurable impact.
+          </p>
+
+          <div class="check">Experienced professionals</div>
+          <div class="check">Results-focused approach</div>
+          <div class="check">Transparent communication</div>
+          <div class="check">Long-term partnerships</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="stats" id="results">
+      <div class="container">
+
+        <div class="stat-grid">
+
+          <div class="stat">
+            <h2>420+</h2>
+            <p>Projects completed</p>
+          </div>
+
+          <div class="stat">
+            <h2>98%</h2>
+            <p>Client satisfaction</p>
+          </div>
+
+          <div class="stat">
+            <h2>12+</h2>
+            <p>Years of experience</p>
+          </div>
+
+          <div class="stat">
+            <h2>35</h2>
+            <p>Countries reached</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>What our clients say</h2>
+          <p>Real partnerships. Real results.</p>
+        </div>
+
+        <div class="testimonial-grid">
+
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+              "NOVA completely transformed how we present our
+              business. We've seen a huge improvement in leads."
+            </p>
+            <div class="person">
+              Sarah Mitchell
+              <span>CEO, Bright Labs</span>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Professional, creative, and incredibly easy to work
+              with. They understood our vision immediately."
+            </p>
+            <div class="person">
+              Daniel Carter
+              <span>Founder, Elevate</span>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>
+              "The strategy they created gave our company the
+              direction we needed to scale confidently."
+            </p>
+            <div class="person">
+              Maya Johnson
+              <span>Director, Vertex</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <h2>Ready to grow?</h2>
+      <p>Let's build something remarkable together.</p>
+      <a href="mailto:hello@example.com" class="cta-btn">
+        Get Started →
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <strong>NOVA</strong>
+        <p>Business growth, simplified.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="mailto:hello@example.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
